@@ -8,7 +8,7 @@ public class Flock : MonoBehaviour
     List<FlockAgent> agents = new List<FlockAgent>();
     public FlockBehavior behavior;
 
-    [Range(10, 500)]
+    [Range(10, 5000)]
     public int startingCount = 250;
     const float AgentDensity = 0.08f;
 
@@ -47,15 +47,48 @@ public class Flock : MonoBehaviour
         }
     }
 
+    void BubbleSort(int[] arr, int n)
+    {
+        int i, j, temp;
+        bool swapped;               // let n =10
+        for (i = 0; i < n - 1; i++)  // i=0..9
+        {
+            swapped = false;
+            for (j = 0; j < n - i - 1; j++)   // i=0: j=0..9
+                                              // i=1; j=0..8
+                                              // i=2; j=0..7
+                                              // i
+            {
+                if (arr[j] > arr[j + 1]) // check whether to swap
+                {
+
+                    // Swap arr[j] and arr[j+1]
+                    temp = arr[j];
+                    arr[j] = arr[j + 1];
+                    arr[j + 1] = temp;
+                    swapped = true;
+                }
+            }
+
+            // If no two elements were
+            // swapped by inner loop, then break
+            if (swapped == false)
+                break;
+        }
+    }
+
     // Update is called once per frame
     void Update()
     {
         foreach (FlockAgent agent in agents)
         {
-            List<Transform> context = GetNearbyObjects(agent);
+            // do some processing
 
-            //FOR DEMO ONLY
-            //agent.GetComponentInChildren<SpriteRenderer>().color = Color.Lerp(Color.white, Color.red, context.Count / 6f);
+
+
+
+            // decide on next movement direction
+            List<Transform> context = GetNearbyObjects(agent);
 
             Vector2 move = behavior.CalculateMove(agent, context, this);
             move *= driveFactor;

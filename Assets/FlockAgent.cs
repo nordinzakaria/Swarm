@@ -5,6 +5,8 @@ using UnityEngine;
 [RequireComponent(typeof(Collider2D))]
 public class FlockAgent : MonoBehaviour
 {
+    public int Temperature { set; get; } = 0f;
+
 
     Flock agentFlock;
     public Flock AgentFlock { get { return agentFlock; } }
@@ -16,6 +18,11 @@ public class FlockAgent : MonoBehaviour
     void Start()
     {
         agentCollider = GetComponent<Collider2D>();
+    }
+
+    private void Update()
+    {
+        Temperature = (int) (Random.value * 100);
     }
 
     public void Initialize(Flock flock)
