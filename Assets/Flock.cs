@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -37,8 +38,8 @@ public class Flock : MonoBehaviour
         {
             Drone newAgent = Instantiate(
                 agentPrefab,
-                Random.insideUnitCircle * startingCount * AgentDensity,
-                Quaternion.Euler(Vector3.forward * Random.Range(0f, 360f)),
+                UnityEngine.Random.insideUnitCircle * startingCount * AgentDensity,
+                Quaternion.Euler(Vector3.forward * UnityEngine.Random.Range(0f, 360f)),
                 transform
                 );
             newAgent.name = "Agent " + i;
@@ -47,7 +48,7 @@ public class Flock : MonoBehaviour
         }
     }
 
-    void BubbleSort(int[] arr, int n)
+    void BubbleSort(int[] arr, int n) // O(N^2)
     {
         int i, j, temp;
         bool swapped;               // let n =10
@@ -88,7 +89,9 @@ public class Flock : MonoBehaviour
             // do some processing
             temperatures.Add(agent.Temperature);
         }
-        BubbleSort();
+        int[] tempArray = temperatures.ToArray();
+        //BubbleSort(tempArray, tempArray.Length);
+        //Array.Sort(tempArray);
 
         foreach (Drone agent in agents)
         {

@@ -5,7 +5,7 @@ using UnityEngine;
 [RequireComponent(typeof(Collider2D))]
 public class Drone : MonoBehaviour
 {
-    public int Temperature { set; get; } = 0f;
+    public int Temperature { set; get; } = 0;
 
 
     Flock agentFlock;
