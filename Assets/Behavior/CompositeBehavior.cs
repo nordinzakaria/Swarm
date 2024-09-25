@@ -8,7 +8,7 @@ public class CompositeBehavior : FlockBehavior
     public FlockBehavior[] behaviors;
     public float[] weights;
 
-    public override Vector2 CalculateMove(FlockAgent agent, List<Transform> context, Flock flock)
+    public override Vector2 CalculateMove(Drone agent, List<Transform> context, Flock flock)
     {
         //handle data mismatch
         if (weights.Length != behaviors.Length)

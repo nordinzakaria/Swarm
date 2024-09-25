@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Flock : MonoBehaviour
 {
-    public FlockAgent agentPrefab;
-    List<FlockAgent> agents = new List<FlockAgent>();
+    public Drone agentPrefab;
+    List<Drone> agents = new List<Drone>();
     public FlockBehavior behavior;
 
     [Range(10, 5000)]
@@ -35,7 +35,7 @@ public class Flock : MonoBehaviour
 
         for (int i = 0; i < startingCount; i++)
         {
-            FlockAgent newAgent = Instantiate(
+            Drone newAgent = Instantiate(
                 agentPrefab,
                 Random.insideUnitCircle * startingCount * AgentDensity,
                 Quaternion.Euler(Vector3.forward * Random.Range(0f, 360f)),
@@ -80,13 +80,18 @@ public class Flock : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        foreach (FlockAgent agent in agents)
+        List<int> temperatures = new List<int>();
+
+
+        foreach (Drone agent in agents)
         {
             // do some processing
+            temperatures.Add(agent.Temperature);
+        }
+        BubbleSort();
 
-
-
-
+        foreach (Drone agent in agents)
+        {
             // decide on next movement direction
             List<Transform> context = GetNearbyObjects(agent);
 
@@ -100,7 +105,7 @@ public class Flock : MonoBehaviour
         }
     }
 
-    List<Transform> GetNearbyObjects(FlockAgent agent)
+    List<Transform> GetNearbyObjects(Drone agent)
     {
         List<Transform> context = new List<Transform>();
         Collider2D[] contextColliders = Physics2D.OverlapCircleAll(agent.transform.position, neighborRadius);

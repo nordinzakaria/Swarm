@@ -5,7 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Flock/Behavior/Alignment")]
 public class AlignmentBehavior : FilteredFlockBehavior
 {
-    public override Vector2 CalculateMove(FlockAgent agent, List<Transform> context, Flock flock)
+    public override Vector2 CalculateMove(Drone agent, List<Transform> context, Flock flock)
     {
         //if no neighbors, maintain current alignment
         if (context.Count == 0)

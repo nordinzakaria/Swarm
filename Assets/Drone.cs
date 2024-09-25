@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Collider2D))]
-public class FlockAgent : MonoBehaviour
+public class Drone : MonoBehaviour
 {
     public int Temperature { set; get; } = 0f;
 
