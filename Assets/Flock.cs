@@ -48,9 +48,10 @@ public class Flock : MonoBehaviour
         }
     }
 
-    void BubbleSort(int[] arr, int n) // O(N^2)
+    void BubbleSort(Drone[] arr, int n) // O(N^2)
     {
-        int i, j, temp;
+        int i, j;
+        Drone temp;
         bool swapped;               // let n =10
         for (i = 0; i < n - 1; i++)  // i=0..9
         {
@@ -60,7 +61,7 @@ public class Flock : MonoBehaviour
                                               // i=2; j=0..7
                                               // i
             {
-                if (arr[j] > arr[j + 1]) // check whether to swap
+                if (arr[j].Temperature > arr[j + 1].Temperature) // check whether to swap
                 {
 
                     // Swap arr[j] and arr[j+1]
@@ -73,24 +74,18 @@ public class Flock : MonoBehaviour
 
             // If no two elements were
             // swapped by inner loop, then break
-            if (swapped == false)
-                break;
+            //if (swapped == false)
+            //    break;
         }
     }
 
     // Update is called once per frame
     void Update()
     {
-        List<int> temperatures = new List<int>();
-
-
-        foreach (Drone agent in agents)
-        {
-            // do some processing
-            temperatures.Add(agent.Temperature);
-        }
-        int[] tempArray = temperatures.ToArray();
-        //BubbleSort(tempArray, tempArray.Length);
+        Drone[] drones = agents.ToArray();
+        //BubbleSort(drones, drones.Length);
+        //BubbleSort(drones, drones.Length);
+        //BubbleSort(drones, drones.Length);
         //Array.Sort(tempArray);
 
         foreach (Drone agent in agents)
